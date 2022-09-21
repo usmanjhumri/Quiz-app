@@ -9,34 +9,23 @@ function Home() {
 
 
 useEffect(()=>{
-    const API = async () =>{
+    
+    API();
+}, [])
+const API = async () =>{
 
-        const getdata =  await (await fetch(api)).json();
-        return getdata.results.map((item: { question: any })=>{
-
-
-
-
-
-
-
-
-
-
-
-
+  const getdata =  await (await fetch(api)).json();
+  return getdata.results.map((item: { question: any })=>{
 
 console.log(item.question);
 
 
 
-        })
-        
-    console.log(getdata);
-    
-    }
-    API();
-}, [])
+  })
+  
+console.log(getdata);
+
+}
 
    const startQuiz = () => {
     alert('click ho gia')
