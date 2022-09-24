@@ -13,3 +13,8 @@ export type QuizQuestion = {
     option: string[]
 
 }
+
+export type QuizOptionQuestion = {
+    question: string,
+    option:string[]
+}

@@ -7,11 +7,11 @@ const ShuflletheAns = (ans:any)=>
 
 
 export  const GetData = async (totalSwal: number, level: string): Promise<QuizQuestion[]> =>{
-    const response = await fetch(`https://opentdb.com/api.php?amount=${totalSwal}5&difficulty=${level}&type=multiple`)
+    const response = await fetch(`https://opentdb.com/api.php?amount=${totalSwal}&difficulty=${level}&type=multiple`)
 
     let {results}= await response.json();
 
-    const quiz = results.map((item : QuizType)=>{
+    const quiz:QuizQuestion[] = results.map((item : QuizType)=>{
 
    return {
     question : item.question,
