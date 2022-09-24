@@ -1,31 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import BG from './bg.jpg'
+import { GetData } from '../API/GetQuestion'
+
+import { QuizQuestion, QuizType } from './../TsTypes/QuizTypes'
 
 
 function Home() {
 
-    let api = 'https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple'
+  const [quiz, setQuiz] = useState([])
 
+   useEffect(()=>{
 
-useEffect(()=>{
+   const datafetch =  async () => {
+    const swal : QuizQuestion[]  =  await GetData(5, "hard");
     
-    API();
-}, [])
-const API = async () =>{
+    console.log(swal);
 
-  const getdata =  await (await fetch(api)).json();
-  return getdata.results.map((item: { question: any })=>{
+    // setQuiz(swal)
+    
 
-console.log(item.question);
+   }
+   datafetch();
 
-
-
-  })
-  
-console.log(getdata);
-
-}
+   },[])
 
    const startQuiz = () => {
     alert('click ho gia')
