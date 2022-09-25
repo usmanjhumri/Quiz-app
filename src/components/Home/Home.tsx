@@ -67,6 +67,35 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option}) => {
           {question}
         </Typography>
 
+        {
+          option.map((opt:string,  ind:number)=>{
+            return(
+              <Box>
+          <Button sx={{
+            cursor:"pointer",
+            userSelect:"none",
+            WebkitUserSelect:"none",
+            msUserSelect:"none",
+            fontSize:"0.8rem",
+            width:"100%",
+            height:"40px",
+            margin:"5px 0",
+            background:"linear-gradient(90deg, rgb(86, 204, 255), rgb(110, 175, 180))",
+            border:"3px solid rgb(255, 255, 255)",
+            borderRadius:"10px",
+            color:"rgb(255, 255, 255)",
+            textShadow:"rgb(0 0 0 / 25%) 0px 1px 0px",
+            "&:hover":{
+              opacity:0.8
+            }
+          }}>
+            {opt}
+          </Button>
+        </Box>
+            )
+          })
+        }
+
 
 
 
