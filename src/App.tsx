@@ -11,6 +11,7 @@ function App() {
 
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>([])
+  const [currentquiz, setCurrentquiz] = useState(0)
 
    useEffect(()=>{
 
@@ -28,14 +29,19 @@ function App() {
 
    },[])
 
+   const HandleSubmit = ()=>{
+    
+   }
+
    if(!quiz.length)
    return<h1>Loading ...</h1>
 
   return (
     <div className="App">
       <Home
-        option = {quiz[0].option} 
-      question ={quiz[0].question}
+        option = {quiz[currentquiz].option} 
+      question ={quiz[currentquiz].question}
+      // callback = {HandleSubmit}
     /> 
     </div>
   )
