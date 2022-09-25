@@ -16,5 +16,6 @@ export type QuizQuestion = {
 
 export type QuizOptionQuestion = {
     question: string,
-    option:string[]
+    option:string[],
+    callback: (e:any)=>void
 }

@@ -3,13 +3,15 @@ import { Box, Button, Container, Grid,Typography } from '@mui/material'
 
 import { QuizOptionQuestion } from './../TsTypes/QuizTypes'
 
-const Home:React.FC<QuizOptionQuestion> = ({question, option}) => {
+const Home:React.FC<QuizOptionQuestion> = ({question, option, callback}) => {
 
   console.log(question, option);
   
   return (
     <>
-   <Box>
+   <Box sx={{
+    marginBottom:"1rem"
+   }}>
     <Typography variant='h1' component={'h1'} sx={{
       fontFamily:"Fascinate Inline",
       fontSize:"70px",
@@ -70,7 +72,7 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option}) => {
         {
           option.map((opt:string,  ind:number)=>{
             return(
-              <Box>
+              <Box key={ind}>
           <Button sx={{
             cursor:"pointer",
             userSelect:"none",
@@ -102,6 +104,26 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option}) => {
 
       </Box>
 
+   </Box>
+
+   <Box>
+    <Button onClick={callback} sx={{
+        cursor:"pointer",
+        background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
+        border:"2px solid rgb(211, 133, 88)",
+        boxShadow:"rgb(0 0 0 / 25%) 0px 5px 10px",
+        borderRadius:"10px",
+        color:"black",
+        padding:"10px 40px",
+        textTransform:"capitalize",
+        letterSpacing:"2px",
+        
+
+      }}>
+
+        next
+
+    </Button>
    </Box>
       
 

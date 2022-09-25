@@ -29,7 +29,16 @@ function App() {
 
    },[])
 
-   const HandleSubmit = ()=>{
+   const HandleSubmit = (e:any)=>{
+     e.preventDefault()
+     if(currentquiz !== quiz.length - 1){
+
+       setCurrentquiz(currentquiz+1)
+     }
+     else{
+      alert('quiz completed')
+      setCurrentquiz(0)
+     }
     
    }
 
@@ -41,7 +50,7 @@ function App() {
       <Home
         option = {quiz[currentquiz].option} 
       question ={quiz[currentquiz].question}
-      // callback = {HandleSubmit}
+      callback = {HandleSubmit}
     /> 
     </div>
   )
