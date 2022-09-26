@@ -11,11 +11,13 @@ export type QuizQuestion = {
     question: string
     answer: string
     option: string[]
+    
 
 }
 
 export type QuizOptionQuestion = {
     question: string,
     option:string[],
+  
     callback: (e:any)=>void
 }

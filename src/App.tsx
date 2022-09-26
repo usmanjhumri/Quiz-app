@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { GetData } from './components/API/GetQuestion'
 import Home from './components/Home/Home'
-import { QuizQuestion } from './components/TsTypes/QuizTypes'
+import { QuizOptionQuestion, QuizQuestion } from './components/TsTypes/QuizTypes'
 
 function App() {
   
 
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>([])
+  const [ questionN, setQuestionN] = useState(0)
   const [currentquiz, setCurrentquiz] = useState(0)
 
    useEffect(()=>{
@@ -38,6 +39,7 @@ function App() {
      else{
       alert('quiz completed')
       setCurrentquiz(0)
+      window.location.reload()
      }
     
    }
@@ -50,6 +52,7 @@ function App() {
       <Home
         option = {quiz[currentquiz].option} 
       question ={quiz[currentquiz].question}
+      
       callback = {HandleSubmit}
     /> 
     </div>
