@@ -5,29 +5,43 @@ import { QuizOptionQuestion } from './../TsTypes/QuizTypes'
 
 const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
 
-  const [selectans, setSelectans] = useState("")
 
   const [ startquiz, setStartquiz] = useState()
 
   const handleSelection = (e:any)=>{
     console.log(e.target.value);
-    // setSelectans(e.target.value)
+    setSelectans(e.target.value)
     
 
   }
   console.log(question, option);
 
-  const startQuiz = ()=>{
+  const btn = document.getElementById('btn')
+  const box = document.getElementById('display')
 
-    
+  if(btn != null && box != null){
 
-  
-  
+    btn.addEventListener('click', function handleclick (){
 
+      if (box.style.display === 'none') {
+        // ✅ Shows element if hidden
+        box.style.display = 'block';
   
-    alert('clicked')
+        btn.style.display = 'none';
+      } else {
+        // ✅ Hides element if shown
+        box.style.display = 'none';
+  
+        btn.style.display = 'none';
+        
+      }
+
+
+    })
 
   }
+
+  
   
   return (
     <>
@@ -51,7 +65,7 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
     <Box sx={{
       marginBottom:"2rem"
     }}>
-      <Button onClick={startQuiz} sx={{
+      <Button id="btn" sx={{
         cursor:"pointer",
         background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
         border:"2px solid rgb(211, 133, 88)",
@@ -75,8 +89,8 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
    </Box>
 
 
-      <Box sx={{
-        // display:"none"
+      <Box id="display" sx={{
+        display:"none"
       }}>
 
         <Typography sx={{
@@ -180,3 +194,7 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
 }
 
 export default Home
+
+function setSelectans(value: any) {
+  throw new Error('Function not implemented.')
+}
