@@ -4,22 +4,28 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { GetData } from './components/API/GetQuestion'
 import Home from './components/Home/Home'
-import { QuizOptionQuestion, QuizQuestion } from './components/TsTypes/QuizTypes'
+import { QuizOptionQuestion, QuizQuestion, QuizType } from './components/TsTypes/QuizTypes'
 
 function App() {
   
 
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>([])
-  const [ questionN, setQuestionN] = useState(0)
   const [currentquiz, setCurrentquiz] = useState(0)
+  const [ score, setScore] = useState(0)
+
+
 
    useEffect(()=>{
 
    const datafetch =  async () => {
     const swal : QuizQuestion[]  =  await GetData(5, "hard");
+
+    // const checkanswer :QuizQuestion[] = await GetData(5, "hard" )
     
     console.log(swal);
+
+    // setCheckans(checkanswer)
 
     setQuiz(swal)
     
@@ -30,7 +36,9 @@ function App() {
 
    },[])
 
-   const HandleSubmit = (e:any)=>{
+   const HandleSubmit = (e:React.FormEvent<EventTarget>)=>{
+
+    
      e.preventDefault()
      if(currentquiz !== quiz.length - 1){
 
@@ -52,6 +60,8 @@ function App() {
       <Home
         option = {quiz[currentquiz].option} 
       question ={quiz[currentquiz].question}
+
+      answer = {quiz[currentquiz].answer}
       
       callback = {HandleSubmit}
     /> 

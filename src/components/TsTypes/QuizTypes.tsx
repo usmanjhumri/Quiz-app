@@ -5,6 +5,7 @@ export type QuizType = {
             incorrect_answers:  string[]
             question:  string
             type:  string
+            question_number:number
 }
 
 export type QuizQuestion = {
@@ -18,6 +19,7 @@ export type QuizQuestion = {
 export type QuizOptionQuestion = {
     question: string,
     option:string[],
+    answer:string
   
-    callback: (e:any)=>void
+    callback: (e:React.FormEvent<EventTarget>)=>void
 }

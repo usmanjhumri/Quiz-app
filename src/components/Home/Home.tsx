@@ -1,52 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Box, Button, Container, Grid,Typography } from '@mui/material'
 
-import { QuizOptionQuestion } from './../TsTypes/QuizTypes'
+import { QuizOptionQuestion, QuizType } from './../TsTypes/QuizTypes'
 
-const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
+const Home:React.FC<QuizOptionQuestion> = ({question, option,answer, callback,}) => {
 
+  const [questions, setQuestions] = useState<QuizType[]>([])
+  const [show, setShow] = useState(true)
+  const [click, setcClick] = useState(false)
+  const [ next, setNext] = useState(false)
+  const [select, setSelect] = useState("")
 
-  const [ startquiz, setStartquiz] = useState()
+  console.log(answer + " usman");
 
-  const handleSelection = (e:any)=>{
-    console.log(e.target.value);
-    setSelectans(e.target.value)
+  const changetheState = ()=>{
+    setShow(!show)
     
+  }
+   
+const btnclick = (e:any)=>{
 
+  setSelect(e.target.value)
+  console.log(e.target.value + " target.value");
+  
+  setcClick(true)
+}
+
+  const checkanswer = (e:any)=>{ 
+  const ans:HTMLElement | null = document.getElementById(e.target.value)
+    if(answer === e.target.value){
+      console.log(e.target.value);
+      ans.style.background = "green"
+    }
+     else if(answer !== e.target.value ){
+      ans.style.background = "red"
+    }
   }
   console.log(question, option);
-
-  const btn = document.getElementById('btn')
-  const box = document.getElementById('display')
-
-  if(btn != null && box != null){
-
-    btn.addEventListener('click', function handleclick (){
-
-      if (box.style.display === 'none') {
-        // ✅ Shows element if hidden
-        box.style.display = 'block';
-  
-        btn.style.display = 'none';
-      } else {
-        // ✅ Hides element if shown
-        box.style.display = 'none';
-  
-        btn.style.display = 'none';
-        
-      }
-
-
-    })
-
-  }
-
-  
   
   return (
     <>
-   <Box sx={{
-    marginBottom:"1rem"
+   <Box 
+   sx={{
+    marginBottom:"1rem",
+    marginTop:"2rem"
    }}>
     <Typography variant='h1' component={'h1'} sx={{
       fontFamily:"Fascinate Inline",
@@ -62,17 +59,21 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
       REACT QUIZ
     </Typography>
 
-    <Box sx={{
+   </Box>
+
+
+   { show ? (
+   <Box sx={{
       marginBottom:"2rem"
     }}>
-      <Button id="btn" sx={{
+      <Button id="btn" onClick={changetheState} sx={{
         cursor:"pointer",
         background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
         border:"2px solid rgb(211, 133, 88)",
         boxShadow:"rgb(0 0 0 / 25%) 0px 5px 10px",
         borderRadius:"10px",
         color:"black",
-        padding:"10px 40px",
+        padding:"7px 40px",
         textTransform:"capitalize",
         letterSpacing:"2px",
         
@@ -83,14 +84,11 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
 
 
     </Box>
-
-      
-
-   </Box>
+    ):(
 
 
       <Box id="display" sx={{
-        display:"none"
+        // display:"none"
       }}>
 
         <Typography sx={{
@@ -103,7 +101,7 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
 
 
     }}>
-          score :
+          score : 
         </Typography>
 
    <Box sx={{
@@ -128,11 +126,13 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
           {question}
         </Typography>
 
+   
+
         {
           option.map((opt:string,  ind:number)=>{
             return(
               <Box key={ind}>
-          <Button onChange={handleSelection} defaultValue={opt} sx={{
+          <Button  id={opt} variant="text" disabled={click}   onClick={btnclick} value={opt} className="class"   sx={{
             cursor:"pointer",
             userSelect:"none",
             WebkitUserSelect:"none",
@@ -146,6 +146,7 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
             borderRadius:"10px",
             color:"rgb(255, 255, 255)",
             textShadow:"rgb(0 0 0 / 25%) 0px 1px 0px",
+            textAlign:"center",
             
             "&:hover":{
               opacity:0.8
@@ -165,36 +166,35 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option, callback,}) => {
       </Box>
 
    <Box>
-    <Button onClick={callback} sx={{
-        cursor:"pointer",
-        background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
-        border:"2px solid rgb(211, 133, 88)",
-        boxShadow:"rgb(0 0 0 / 25%) 0px 5px 10px",
-        borderRadius:"10px",
-        color:"black",
-        padding:"10px 40px",
-        textTransform:"capitalize",
-        letterSpacing:"2px",
-        
+   
+     <Button onClick={callback} sx={{
+      cursor:"pointer",
+      background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
+      border:"2px solid rgb(211, 133, 88)",
+      boxShadow:"rgb(0 0 0 / 25%) 0px 5px 10px",
+      borderRadius:"10px",
+      color:"black",
+      padding:"10px 40px",
+      textTransform:"capitalize",
+      letterSpacing:"2px",
+      
 
-      }}>
+    }}>
 
-        next
+      next
 
-    </Button>
+  </Button>
+ 
+   
    </Box>
 
    </Box>
       
 
-
+      )}
 
     </>
   )
 }
 
 export default Home
-
-function setSelectans(value: any) {
-  throw new Error('Function not implemented.')
-}
