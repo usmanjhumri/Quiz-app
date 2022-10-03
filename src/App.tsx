@@ -36,8 +36,11 @@ function App() {
 
    },[])
 
-   const HandleSubmit = (e:React.FormEvent<EventTarget>)=>{
+   const HandleSubmit = (e:React.FormEvent<EventTarget>, userAns:string)=>{
 
+    const currentQuestion = quiz[currentquiz]
+  
+    console.log(currentQuestion + " currentQuestion");
     
      e.preventDefault()
      if(currentquiz !== quiz.length - 1){

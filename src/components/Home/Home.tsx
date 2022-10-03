@@ -20,13 +20,6 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option,answer, callback,})
    
 const btnclick = (e:any)=>{
 
-  setSelect(e.target.value)
-  console.log(e.target.value + " target.value");
-  
-  setcClick(true)
-}
-
-  const checkanswer = (e:any)=>{ 
   const ans:HTMLElement | null = document.getElementById(e.target.value)
     if(answer === e.target.value){
       console.log(e.target.value);
@@ -35,6 +28,23 @@ const btnclick = (e:any)=>{
      else if(answer !== e.target.value ){
       ans.style.background = "red"
     }
+
+
+  setSelect(e.target.value)
+  console.log(e.target.value + " target.value");
+  
+  setcClick(true)
+}
+
+  const checkanswer = (e:any)=>{ 
+  // const ans:HTMLElement | null = document.getElementById(e.target.value)
+  //   if(answer === e.target.value){
+  //     console.log(e.target.value);
+  //     ans.style.background = "green"
+  //   }
+  //    else if(answer !== e.target.value ){
+  //     ans.style.background = "red"
+  //   }
   }
   console.log(question, option);
   
@@ -127,12 +137,13 @@ const btnclick = (e:any)=>{
         </Typography>
 
    
-
         {
           option.map((opt:string,  ind:number)=>{
             return(
               <Box key={ind}>
-          <Button  id={opt} variant="text" disabled={click}   onClick={btnclick} value={opt} className="class"   sx={{
+                {/* disabled={click} */}
+                <label>
+          <input  id={opt} checked={select === opt} required type="radio"   onChange={btnclick} value={opt} className="class"   style={{
             cursor:"pointer",
             userSelect:"none",
             WebkitUserSelect:"none",
@@ -148,26 +159,23 @@ const btnclick = (e:any)=>{
             textShadow:"rgb(0 0 0 / 25%) 0px 1px 0px",
             textAlign:"center",
             
-            "&:hover":{
-              opacity:0.8
-            }
-          }}>
-            {opt}
-          </Button>
+            
+          }}/>
+
+          {opt}
+            
+          </label>
         </Box>
             )
           })
         }
 
 
-
-
-
       </Box>
 
    <Box>
    
-     <Button onClick={callback} sx={{
+     <Button onClick={(e)=>callback(e,select)} sx={{
       cursor:"pointer",
       background:"linear-gradient(rgb(255, 255, 255), rgb(255, 204, 145))",
       border:"2px solid rgb(211, 133, 88)",
