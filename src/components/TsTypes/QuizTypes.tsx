@@ -12,6 +12,7 @@ export type QuizQuestion = {
     question: string
     answer: string
     option: string[]
+    correct_answer: string
     
 
 }

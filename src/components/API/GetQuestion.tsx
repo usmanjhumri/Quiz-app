@@ -16,6 +16,7 @@ export  const GetData = async (totalSwal: number, level: string): Promise<QuizQu
    return {
     question : item.question,
     answer  : item.correct_answer,
+    correct_answer:item.correct_answer,
     option : ShuflletheAns(item.incorrect_answers.concat(item.correct_answer))
 }
 

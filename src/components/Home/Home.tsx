@@ -21,13 +21,13 @@ const Home:React.FC<QuizOptionQuestion> = ({question, option,answer, callback,})
 const btnclick = (e:any)=>{
 
   const ans:HTMLElement | null = document.getElementById(e.target.value)
-    if(answer === e.target.value){
-      console.log(e.target.value);
-      ans.style.background = "green"
-    }
-     else if(answer !== e.target.value ){
-      ans.style.background = "red"
-    }
+    // if(answer === e.target.value){
+    //   console.log(e.target.value);
+    //   ans.style.background = "green"
+    // }
+    //  else if(answer !== e.target.value ){
+    //   ans.style.background = "red"
+    // }
 
 
   setSelect(e.target.value)

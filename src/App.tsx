@@ -37,19 +37,30 @@ function App() {
    },[])
 
    const HandleSubmit = (e:React.FormEvent<EventTarget>, userAns:string)=>{
+    e.preventDefault()
 
-    const currentQuestion = quiz[currentquiz]
-  
-    console.log(currentQuestion + " currentQuestion");
+    const currentQuestion:QuizQuestion = quiz[currentquiz]
+
+    // const correct_ans:string = currentQuestion.correct_answer
+
+    // console.log(currentQuestion + " currentQuestion");
     
-     e.preventDefault()
+    console.log(  "correctAnswer " + currentQuestion.correct_answer  + " user select the ans " + userAns);
+  
+    
+    if(userAns === currentQuestion.correct_answer){
+      setScore(score + 1)
+      
+    }
+
      if(currentquiz !== quiz.length - 1){
 
        setCurrentquiz(currentquiz+1)
      }
      else{
-      alert('quiz completed')
+      alert('quiz completed' + "and your final score is +" + score + " out of " + quiz.length)
       setCurrentquiz(0)
+      setScore(0)
       window.location.reload()
      }
     
